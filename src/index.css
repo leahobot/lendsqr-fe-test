@@ -1,0 +1,12 @@
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: auto;
+  box-sizing: border-box;
+  
+}
+
+html{
+  font-size: 62.5%;
+}

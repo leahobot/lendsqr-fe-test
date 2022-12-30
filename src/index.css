@@ -1,12 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
 *,
 *::before,
 *::after{
   margin: 0;
   padding: auto;
   box-sizing: border-box;
-  
+  font-family: var(--work-sans-font);
 }
 
 html{
   font-size: 62.5%;
+}
+
+:root{
+  --work-sans-font: 'Work Sans', sans-serif;
+  --roboto-font-: 'Roboto', sans-serif;
+
+  --primary-color : #39CDCC;
+  --secondary-color: #213F7D;
+  --light-blue: #93a4c7;
+  --bg-color: #FBFBFB;
+  --text-color : #545F7D;
+  --purple-color: #DF18FF;
+  --blue-color: #5718FF;
+  --red-color: #F55F44;
+  --pink-color: #FF3366;
+  --yellow-color: #E9B200;
+  --dark-red: #E4033B;
+  --green-color: #39CD62;
+  --hover-color: #39cdcd1f;
 }

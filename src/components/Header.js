@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GoSearch } from "react-icons/go";
 import { BsBell } from "react-icons/bs";
 import { AiFillCaretDown } from "react-icons/ai";
@@ -7,9 +7,7 @@ import user from "../images/user-image.png";
 import logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
 
-const Header = () => {
-	const { searchValue, setSearchValue } = useState();
-
+const Header = ({ searchValue, setSearchValue }) => {
 	return (
 		<header className={styles.header}>
 			<div className={styles.left}>

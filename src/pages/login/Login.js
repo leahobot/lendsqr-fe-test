@@ -18,7 +18,7 @@ const Login = () => {
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-		navigate("/dashboard");
+		navigate("/home/users");
 		toast("Login Successful!!", {
 			icon: <BsCheckCircleFill className={styles["toast-icon"]} />,
 			style: {

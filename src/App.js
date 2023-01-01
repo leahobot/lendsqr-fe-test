@@ -15,7 +15,7 @@ function App() {
 					element={<Login />}
 				/>
 				<Route
-					path="/dashboard"
+					path="/home/*"
 					element={<Dashboard />}
 				/>
 				<Route

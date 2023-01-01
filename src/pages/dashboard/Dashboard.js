@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import Main from "../../components/Main";
 
 const Dashboard = () => {
-	const { searchValue, setSearchValue } = useState();
+	const [searchValue, setSearchValue] = useState("");
 	return (
 		<section className={styles.dashboard}>
 			<Header

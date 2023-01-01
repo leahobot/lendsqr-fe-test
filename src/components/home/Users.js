@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../pages/dashboard/Dashboard.module.scss";
 import Table from "../Table";
-// import Pagination from "../Pagination";
+import Pagination from "../Pagination";
+import axios from "axios";
 import { FiUsers, FiDatabase } from "react-icons/fi";
 import { AiOutlineDatabase } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
@@ -62,6 +63,31 @@ const data = [
 ];
 
 const Users = ({ searchValue }) => {
+	const [users, setUsers] = useState([]);
+	const [filteredUsers, setFilteredUsers] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [usersPerPage, setUsersPerPage] = useState(10);
+
+	useEffect(() => {
+		try {
+			const getUsers = async () => {
+				const { data } = await axios.get(
+					`${process.env.REACT_APP_API_URL}`,
+				);
+
+				setUsers(data);
+				localStorage.setItem("users", JSON.stringify(data));
+			};
+			getUsers();
+		} catch (err) {
+			console.log(err.response.message);
+		}
+	}, []);
+
+	const indexOfLastUser = currentPage * usersPerPage;
+	const indexOfFirstUser = indexOfLastUser - usersPerPage;
+	const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+
 	return (
 		<div className={styles.users}>
 			<div className={styles["user-summary"]}>
@@ -82,7 +108,20 @@ const Users = ({ searchValue }) => {
 				</div>
 			</div>
 
-			<Table searchValue={searchValue} />
+			<Table
+				searchValue={searchValue}
+				currentUsers={currentUsers}
+				users={users}
+				setFilteredUsers={setFilteredUsers}
+			/>
+			<Pagination
+				users={users}
+				filteredUsers={filteredUsers}
+				usersPerPage={usersPerPage}
+				setUsersPerPage={setUsersPerPage}
+				currentPage={currentPage}
+				setCurrentPage={setCurrentPage}
+			/>
 		</div>
 	);
 };

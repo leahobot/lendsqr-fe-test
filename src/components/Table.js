@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "../pages/dashboard/Dashboard.module.scss";
 import axios from "axios";
 import { FiMoreVertical } from "react-icons/fi";
@@ -8,18 +8,23 @@ import { MdOutlineClose } from "react-icons/md";
 import { TbUserX, TbUserCheck } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
-const Table = ({ currentUsers, setFilteredUsers }) => {
-	const [users, setUsers] = useState([]);
-	const [showModal, setShowModal] = useState(false);
-	const [showFilter, setShowFilter] = useState(false);
-	// const [statusValue, setStatusValue] = useState("Pending");
-	const [org, setOrg] = useState("");
-	const [email, setEmail] = useState("");
-	const [userName, setUserName] = useState("");
-	const [phoneNumber, setPhoneNumber] = useState("");
-	const [dateTime, setDateTime] = useState("");
+const Table = ({ searchValue, currentUsers, users, setFilteredUsers }) => {
 	const [status, setStatus] = useState("Inactive");
 	const [userId, setUserId] = useState("");
+	const [showModal, setShowModal] = useState(false);
+	const [showFilter, setShowFilter] = useState(false);
+
+	let orgRef = useRef();
+	let emailRef = useRef();
+	let userNameRef = useRef();
+	let phoneRef = useRef();
+	let dateRef = useRef();
+	// const [statusValue, setStatusValue] = useState("Pending");
+	// const [org, setOrg] = useState("");
+	// const [email, setEmail] = useState("");
+	// const [userName, setUserName] = useState("");
+	// const [phoneNumber, setPhoneNumber] = useState("");
+	// const [dateTime, setDateTime] = useState("");
 
 	const editPhoneNumber = (str) => {
 		const index = str.indexOf("x");
@@ -39,42 +44,51 @@ const Table = ({ currentUsers, setFilteredUsers }) => {
 	};
 
 	useEffect(() => {
-		try {
-			const getUsers = async () => {
-				const { data } = await axios.get(
-					`${process.env.REACT_APP_API_URL}`,
-				);
-
-				setUsers(data);
-				localStorage.setItem("users", JSON.stringify(data));
-			};
-			getUsers();
-		} catch (err) {
-			console.log(err.response.message);
-		}
-	}, []);
+		const tempUsers = users
+			? users.filter(
+					(user) =>
+						user.userName
+							.toLowerCase()
+							.includes(searchValue.toLowerCase()) ||
+						user.orgName
+							.toLowerCase()
+							.includes(searchValue.toLowerCase()) ||
+						user.profile.phoneNumber
+							.toLowerCase()
+							.includes(searchValue.toLowerCase()) ||
+						user.email
+							.toLowerCase()
+							.includes(searchValue.toLowerCase()) ||
+						new Date(user.createdAt)
+							.toLocaleString()
+							.toLowerCase()
+							.includes(searchValue.toLowerCase()),
+			  )
+			: [];
+		setFilteredUsers(tempUsers);
+	}, [searchValue, users]);
 
 	const submitForm = (e) => {
 		e.preventDefault();
 
-		const tempUsers = users
-			? users.filter(
-					(user) =>
-						user.userName.toLowerCase() ===
-							userName.toLowerCase() ||
-						user.orgName.toLowerCase() === org.toLowerCase() ||
-						user.email.toLowerCase() === email.toLowerCase() ||
-						user.profile.phoneNumber.toLowerCase() ===
-							phoneNumber.toLowerCase() ||
-						user.createdAt.toLowerCase() ===
-							dateTime.toLowerCase() ||
-						user.userName.toLowerCase() === status.toLowerCase(),
-			  )
-			: [];
+		// const tempUsers = users
+		// 	? users.filter(
+		// 			(user) =>
+		// 				user.userName.toLowerCase() ===
+		// 					userName.toLowerCase() ||
+		// 				user.orgName.toLowerCase() === org.toLowerCase() ||
+		// 				user.email.toLowerCase() === email.toLowerCase() ||
+		// 				user.profile.phoneNumber.toLowerCase() ===
+		// 					phoneNumber.toLowerCase() ||
+		// 				user.createdAt.toLowerCase() ===
+		// 					dateTime.toLowerCase() ||
+		// 				user.userName.toLowerCase() === status.toLowerCase(),
+		// 	  )
+		// 	: [];
 
-		setFilteredUsers(tempUsers);
+		// setFilteredUsers(tempUsers);
 
-		setShowFilter(false);
+		// setShowFilter(false);
 	};
 
 	const closeModals = () => {
@@ -103,7 +117,7 @@ const Table = ({ currentUsers, setFilteredUsers }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{users.map((user) => {
+					{currentUsers.map((user) => {
 						return (
 							<tr
 								key={user.id}
@@ -191,8 +205,7 @@ const Table = ({ currentUsers, setFilteredUsers }) => {
 					<div>
 						<label>Organization</label>
 						<select
-							value={org}
-							onChange={(e) => setOrg(e.target.value)}
+							ref={orgRef}
 							required>
 							<option value="">Select</option>
 							{users
@@ -209,8 +222,7 @@ const Table = ({ currentUsers, setFilteredUsers }) => {
 					<div>
 						<label>UserName</label>
 						<input
-							value={userName}
-							onChange={(e) => setUserName(e.target.value)}
+							ref={userNameRef}
 							type="text"
 							placeholder="User"
 							required
@@ -219,8 +231,7 @@ const Table = ({ currentUsers, setFilteredUsers }) => {
 					<div>
 						<label>Email</label>
 						<input
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
+							ref={emailRef}
 							type="email"
 							placeholder="Email"
 						/>
@@ -228,16 +239,14 @@ const Table = ({ currentUsers, setFilteredUsers }) => {
 					<div>
 						<label>Date</label>
 						<input
-							value={dateTime}
-							onChange={(e) => setDateTime(e.target.value)}
+							ref={dateRef}
 							type="datetime-local"
 						/>
 					</div>
 					<div>
 						<label>Phone Number</label>
 						<input
-							value={phoneNumber}
-							onChange={(e) => setPhoneNumber(e.target.value)}
+							ref={phoneRef}
 							type="number"
 							placeholder="Phone Number"
 						/>

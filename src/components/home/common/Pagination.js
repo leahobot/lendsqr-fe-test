@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styles from "./Pagination.module.scss";
-import { AiOutlineDown, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import styles from "./Common.module.scss";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const Pagination = ({
 	users,

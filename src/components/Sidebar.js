@@ -16,8 +16,8 @@ const Sidebar = () => {
 				<FiChevronDown className={styles.icon} />
 			</div>
 			<NavLink
-				end
 				to="/home"
+				end
 				className={activeLink}>
 				<FaHome className={styles.icon} />
 				<p>Dashboard</p>
@@ -30,7 +30,7 @@ const Sidebar = () => {
 						{item.links.map((link) => (
 							<NavLink
 								key={link.name}
-								to={`/home/${link.name.toLowerCase()}`}
+								to={`${link.name.toLowerCase()}`}
 								className={activeLink}>
 								{link.icon} <p>{link.name}</p>
 							</NavLink>

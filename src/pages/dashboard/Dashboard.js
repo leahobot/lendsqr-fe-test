@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Dashboard.module.scss";
-import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar";
-import Main from "../../components/Main";
+import { Header, Sidebar, Main } from "../../components";
 
 const Dashboard = () => {
 	const [searchValue, setSearchValue] = useState("");

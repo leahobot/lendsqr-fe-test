@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import styles from "../../pages/dashboard/Dashboard.module.scss";
-import Table from "../Table";
-import Pagination from "../Pagination";
+import React, { useState, useEffect, Fragment } from "react";
+import styles from "../../../pages/dashboard/Dashboard.module.scss";
+import { Table, Pagination, UserDetails } from "../..";
 import axios from "axios";
 import { FiUsers, FiDatabase } from "react-icons/fi";
 import { AiOutlineDatabase } from "react-icons/ai";
@@ -67,6 +66,7 @@ const Users = ({ searchValue }) => {
 	const [filteredUsers, setFilteredUsers] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [usersPerPage, setUsersPerPage] = useState(10);
+	const [showUserDetails, setShowUserDetails] = useState(false);
 
 	useEffect(() => {
 		try {
@@ -89,40 +89,47 @@ const Users = ({ searchValue }) => {
 	const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
 	return (
-		<div className={styles.users}>
-			<div className={styles["user-summary"]}>
-				<h1>Users</h1>
+		<Fragment>
+			{!showUserDetails ? (
+				<div className={styles.users}>
+					<div className={styles["user-summary"]}>
+						<h1>Users</h1>
 
-				<div className={styles.summary}>
-					{data.map((item, index) => (
-						<div
-							key={index}
-							className={styles["summary-container"]}>
-							<span style={{ backgroundColor: item.bg }}>
-								{item.icon}
-							</span>
-							<p className={styles.title}>{item.title}</p>
-							<p className={styles.total}>{item.total}</p>
+						<div className={styles.summary}>
+							{data.map((item, index) => (
+								<div
+									key={index}
+									className={styles["summary-container"]}>
+									<span style={{ backgroundColor: item.bg }}>
+										{item.icon}
+									</span>
+									<p className={styles.title}>{item.title}</p>
+									<p className={styles.total}>{item.total}</p>
+								</div>
+							))}
 						</div>
-					))}
-				</div>
-			</div>
+					</div>
 
-			<Table
-				searchValue={searchValue}
-				currentUsers={currentUsers}
-				users={users}
-				setFilteredUsers={setFilteredUsers}
-			/>
-			<Pagination
-				users={users}
-				filteredUsers={filteredUsers}
-				usersPerPage={usersPerPage}
-				setUsersPerPage={setUsersPerPage}
-				currentPage={currentPage}
-				setCurrentPage={setCurrentPage}
-			/>
-		</div>
+					<Table
+						searchValue={searchValue}
+						currentUsers={currentUsers}
+						users={users}
+						setFilteredUsers={setFilteredUsers}
+						setShowUserDetails={setShowUserDetails}
+					/>
+					<Pagination
+						users={users}
+						filteredUsers={filteredUsers}
+						usersPerPage={usersPerPage}
+						setUsersPerPage={setUsersPerPage}
+						currentPage={currentPage}
+						setCurrentPage={setCurrentPage}
+					/>
+				</div>
+			) : (
+				<UserDetails setShowUserDetails={setShowUserDetails} />
+			)}
+		</Fragment>
 	);
 };
 

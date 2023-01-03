@@ -76,7 +76,7 @@ export const links = [
 				icon: <BsBuilding className={styles.icon} />,
 			},
 			{
-				name: "Fees ans Charges",
+				name: "Fees and Charges",
 				icon: <ImDatabase className={styles.icon} />,
 			},
 			{
@@ -149,5 +149,84 @@ export const tableHead = [
 	{
 		title: "",
 		icon: "",
+	},
+];
+
+export const routes = [
+	{
+		path: "guarantors",
+		name: "Guarantors",
+	},
+	{
+		path: "loans",
+		name: "Loans",
+	},
+	{
+		path: "decision models",
+		name: "Decision Models",
+	},
+	{
+		path: "savings",
+		name: "Savings",
+	},
+	{
+		path: "loan requests",
+		name: "Loan Requests",
+	},
+	{
+		path: "whitelist",
+		name: "WhiteList",
+	},
+	{
+		path: "karma",
+		name: "Karma",
+	},
+	{
+		path: "organization",
+		name: "Organization",
+	},
+	{
+		path: "loan products",
+		name: "Loan Products",
+	},
+	{
+		path: "savings product",
+		name: "Savings Product",
+	},
+	{
+		path: "fees and charges",
+		name: "Fees and Charges",
+	},
+	{
+		path: "transactions",
+		name: "Transactions",
+	},
+	{
+		path: "services",
+		name: "Services",
+	},
+	{
+		path: "service account",
+		name: "Service Account",
+	},
+	{
+		path: "settlements",
+		name: "Settlements",
+	},
+	{
+		path: "reports",
+		name: "Reports",
+	},
+	{
+		path: "preferences",
+		name: "Preferences",
+	},
+	{
+		path: "fees and pricing",
+		name: "Fees and Princing",
+	},
+	{
+		path: "audit logs",
+		name: "Audit Logs",
 	},
 ];

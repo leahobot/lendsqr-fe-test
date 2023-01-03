@@ -3,11 +3,16 @@ import { GoSearch } from "react-icons/go";
 import { BsBell } from "react-icons/bs";
 import { AiFillCaretDown } from "react-icons/ai";
 import styles from "../pages/dashboard/Dashboard.module.scss";
-import user from "../images/user-image.png";
+import image from "../images/user-image.png";
 import logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
 
-const Header = ({ searchValue, setSearchValue }) => {
+const Header = ({ searchValue, setSearchValue, user }) => {
+	const userName = user.email.slice(0, user.email.indexOf("@"));
+	const firstLetter = userName ? userName[0].toUpperCase() : null;
+	const otherLetters = userName.slice(1).toLowerCase();
+	const name = firstLetter + otherLetters;
+
 	return (
 		<header className={styles.header}>
 			<div className={styles.left}>
@@ -30,14 +35,14 @@ const Header = ({ searchValue, setSearchValue }) => {
 				</div>
 			</div>
 			<div className={styles.right}>
-				<Link to="/docs">Docs</Link>
+				<Link to="/home/users">Docs</Link>
 				<BsBell className={styles.icon2} />
 				<img
-					src={user}
+					src={image}
 					alt="user"
 				/>
 				<span className={styles.user}>
-					Adedeji
+					{name}
 					<AiFillCaretDown />
 				</span>
 			</div>

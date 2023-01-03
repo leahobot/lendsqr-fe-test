@@ -493,7 +493,7 @@
 						justify-content: flex-start;
 						gap: 2.5rem;
 						font-size: 0.5rem;
-						padding-bottom: 2.5rem;
+						padding-bottom: 2rem;
 
 						img {
 							height: 4rem;
@@ -564,8 +564,46 @@
 					}
 				}
 
-				.details {
-					margin-top: 3rem;
+				.details-container {
+					margin-top: 2.5rem;
+					white-space: nowrap;
+					overflow-x: auto;
+					box-shadow: 3px 5px 20px 0
+						rgba($color: #000000, $alpha: 0.04);
+
+					border-radius: 3px;
+					background-color: white;
+					padding: 1.5rem 2rem;
+					font-size: 0.8rem;
+					color: var(--secondary-color);
+
+					&-summary {
+						h4 {
+							font-size: 1.3rem;
+						}
+
+						&-body {
+							width: 100%;
+							display: flex;
+							justify-content: flex-start;
+							flex-wrap: wrap;
+
+							&-span {
+								margin: 2rem 2rem 0.7rem 0;
+								p:last-child {
+									font-size: 1.2rem;
+									font-weight: 500;
+									margin-top: 0.8rem;
+								}
+							}
+						}
+					}
+					.line {
+						width: 100%;
+						background-color: #545f7d2c;
+						margin: 1.3rem 0 2rem 0;
+						height: 1px;
+					}
 				}
 			}
 		}
@@ -811,7 +849,7 @@
 							justify-content: flex-start;
 							gap: 2.2rem;
 							font-size: 1.2rem;
-							padding-bottom: 4rem;
+							padding-bottom: 3rem;
 
 							img {
 								height: 7rem;
@@ -851,14 +889,37 @@
 						}
 					}
 
-					.details {
-						margin-top: 3rem;
+					.details-container {
+						margin-top: 4rem;
+						border-radius: 6px;
+						padding: 3rem 2.5rem;
+						font-size: 1.5rem;
+
+						&-summary {
+							h4 {
+								font-size: 1.7rem;
+							}
+
+							&-body {
+								&-span {
+									margin: 3rem 5.2rem 1.5rem 0;
+									p:last-child {
+										font-size: 1.6rem;
+										margin-top: 1.5rem;
+									}
+								}
+							}
+						}
+						.line {
+							margin: 2rem 0 3.5rem 0;
+						}
 					}
 				}
 			}
 		}
 	}
 }
+
 @media screen and (min-width: 1024px) {
 	.dashboard {
 		.header {
@@ -1091,7 +1152,7 @@
 						&-top {
 							gap: 4rem;
 							font-size: 1.2rem;
-							padding-bottom: 5rem;
+							padding-bottom: 3.5rem;
 
 							img {
 								height: 8rem;
@@ -1128,8 +1189,29 @@
 						}
 					}
 
-					.details {
-						margin-top: 3rem;
+					.details-container {
+						border-radius: 6px;
+						padding: 3rem;
+						font-size: 1.4rem;
+
+						&-summary {
+							h4 {
+								font-size: 1.7rem;
+							}
+
+							&-body {
+								&-span {
+									margin: 3rem 7rem 1.5rem 0;
+									p:last-child {
+										font-size: 1.6rem;
+										margin-top: 1.5rem;
+									}
+								}
+							}
+						}
+						.line {
+							margin: 2rem 0 3.5rem 0;
+						}
 					}
 				}
 			}
@@ -1364,7 +1446,7 @@
 						&-top {
 							gap: 4.5rem;
 							font-size: 1.4rem;
-							padding-bottom: 5rem;
+							padding-bottom: 3.5rem;
 
 							img {
 								height: 8.5rem;
@@ -1404,8 +1486,30 @@
 						}
 					}
 
-					.details {
-						margin-top: 3rem;
+					.details-container {
+						margin-top: 4.5rem;
+						border-radius: 8px;
+						padding: 3rem 3.5rem;
+						font-size: 1.6rem;
+
+						&-summary {
+							h4 {
+								font-size: 2rem;
+							}
+
+							&-body {
+								&-span {
+									margin: 3.5rem 8.5rem 1.7rem 0;
+									p:last-child {
+										font-size: 1.9rem;
+										margin-top: 1.7rem;
+									}
+								}
+							}
+						}
+						.line {
+							margin: 2rem 0 3.9rem 0;
+						}
 					}
 				}
 			}
@@ -1642,7 +1746,7 @@
 						&-top {
 							gap: 6rem;
 							font-size: 1.8rem;
-							padding-bottom: 6rem;
+							padding-bottom: 4.5rem;
 
 							img {
 								height: 10rem;
@@ -1682,8 +1786,30 @@
 						}
 					}
 
-					.details {
-						margin-top: 3rem;
+					.details-container {
+						margin-top: 5.5rem;
+						border-radius: 10px;
+						padding: 4rem 4.5rem;
+						font-size: 2rem;
+
+						&-summary {
+							h4 {
+								font-size: 2.6rem;
+							}
+
+							&-body {
+								&-span {
+									margin: 4.5rem 10.5rem 2.7rem 0;
+									p:last-child {
+										font-size: 2.5rem;
+										margin-top: 2.2rem;
+									}
+								}
+							}
+						}
+						.line {
+							margin: 3rem 0 4.8rem 0;
+						}
 					}
 				}
 			}

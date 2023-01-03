@@ -75,6 +75,9 @@
 					&:hover {
 						color: var(--light-blue);
 					}
+					&:active {
+						transform: translateY(2px);
+					}
 				}
 			}
 
@@ -84,6 +87,15 @@
 				font-weight: 600;
 				text-align: left;
 				margin: 2rem 5%;
+				cursor: pointer;
+
+				&:hover {
+					color: var(--light-blue);
+				}
+
+				&:active {
+					transform: translateY(2px);
+				}
 			}
 
 			button {

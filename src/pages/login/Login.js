@@ -6,14 +6,8 @@ import logo from "../../images/logo.svg";
 import { toast } from "react-hot-toast";
 import { BsCheckCircleFill } from "react-icons/bs";
 
-const initialState = {
-	email: "",
-	password: "",
-};
-
-const Login = () => {
+const Login = ({ user, setUser }) => {
 	const navigate = useNavigate();
-	const [user, setUser] = useState(initialState);
 	const [showPassword, setShowPassword] = useState(false);
 
 	const handleLogin = (e) => {

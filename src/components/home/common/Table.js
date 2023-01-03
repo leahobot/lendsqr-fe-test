@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../pages/dashboard/Dashboard.module.scss";
 import { ViewUser, Filter } from "../..";
-import { useNavigate } from "react-router-dom";
 import { FiMoreVertical } from "react-icons/fi";
 import { tableHead } from "../../../data/data";
-import { MdOutlineClose } from "react-icons/md";
 
 const Table = ({
 	searchValue,
@@ -13,7 +11,6 @@ const Table = ({
 	setFilteredUsers,
 	setShowUserDetails,
 }) => {
-	const navigate = useNavigate();
 	const [status, setStatus] = useState("Inactive");
 	const [userId, setUserId] = useState("");
 	const [showModal, setShowModal] = useState(false);
@@ -25,12 +22,6 @@ const Table = ({
 	// const [userName, setUserName] = useState("");
 	// const [phoneNumber, setPhoneNumber] = useState("");
 	// const [dateTime, setDateTime] = useState("");
-
-	const editPhoneNumber = (str) => {
-		const index = str.indexOf("x");
-		const slicedPhoneNumber = str.slice(0, index);
-		return slicedPhoneNumber;
-	};
 
 	const handleModal = (id) => {
 		setShowModal(true);
@@ -67,6 +58,13 @@ const Table = ({
 			setShowModal(false);
 		}
 	};
+
+	const editPhoneNumber = (str) => {
+		const index = str.indexOf("x");
+		const slicedPhoneNumber = str.slice(0, index);
+		return slicedPhoneNumber;
+	};
+
 	return (
 		<div
 			className={styles.table}

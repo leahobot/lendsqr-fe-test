@@ -7,6 +7,7 @@ import {
 	Routes,
 	Route,
 } from "react-router-dom";
+import NotFoundHome from "../../../pages/notFound/NotFoundHome";
 import {
 	AppSystem,
 	BankDetails,
@@ -134,34 +135,37 @@ const UserDetails = ({ setShowUserDetails }) => {
 					</div>
 				</div>
 			)}
-			<div className={styles.details}>
-				<Routes>
-					<Route
-						index
-						element={<Details />}
-					/>
-					<Route
-						path="documents"
-						element={<Documents />}
-					/>
-					<Route
-						path="bank-details"
-						element={<BankDetails />}
-					/>
-					<Route
-						path="loans"
-						element={<Loan />}
-					/>
-					<Route
-						path="savings"
-						element={<Savings />}
-					/>
-					<Route
-						path="app-system"
-						element={<AppSystem />}
-					/>
-				</Routes>
-			</div>
+
+			<Routes>
+				<Route
+					index
+					element={<Details user={user} />}
+				/>
+				<Route
+					path="documents"
+					element={<Documents />}
+				/>
+				<Route
+					path="bank-details"
+					element={<BankDetails />}
+				/>
+				<Route
+					path="loans"
+					element={<Loan />}
+				/>
+				<Route
+					path="savings"
+					element={<Savings />}
+				/>
+				<Route
+					path="app-system"
+					element={<AppSystem />}
+				/>
+				<Route
+					path="*"
+					element={<NotFoundHome />}
+				/>
+			</Routes>
 		</div>
 	);
 };

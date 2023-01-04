@@ -37,11 +37,12 @@ const UserDetails = ({ setShowUserDetails }) => {
 
 	return (
 		<div className={styles["user-details"]}>
-			<div
-				onClick={handleViewUsers}
-				className={styles["user-details-link"]}>
+			<div className={styles["user-details-link"]}>
 				Back to Users
-				<BiArrowBack className={styles.icon4} />
+				<BiArrowBack
+					onClick={handleViewUsers}
+					className={styles.icon4}
+				/>
 			</div>
 
 			<div className={styles["user-details-top"]}>

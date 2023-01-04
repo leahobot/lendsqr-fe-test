@@ -4,17 +4,20 @@ import { BsEye } from "react-icons/bs";
 import { TbUserX, TbUserCheck } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 
-const ViewUser = ({ setShowUserDetails, userId, id, setStatus }) => {
+const ViewUser = ({ setShowUserDetails, spanRef, id }) => {
 	const navigate = useNavigate();
+
 	const handleViewUser = (user) => {
 		setShowUserDetails(true);
 		navigate(`${user}`);
 	};
 
-	const handleBlacklist = (id) => {
-		if (id === userId) {
-			setStatus("Blacklisted");
-		}
+	const handleBlacklist = (span) => {
+		span.current.innerText = "Blacklisted";
+	};
+
+	const handleActive = (span) => {
+		span.current.innerText = "Active";
 	};
 	return (
 		<div className={styles["status-modal"]}>
@@ -26,13 +29,13 @@ const ViewUser = ({ setShowUserDetails, userId, id, setStatus }) => {
 			</div>
 
 			<div
-				onClick={() => handleBlacklist(id)}
+				onClick={() => handleBlacklist(spanRef)}
 				className={styles["status-modal-item"]}>
 				<TbUserX className={styles.icon3} />
 				<p>Blacklist User</p>
 			</div>
 			<div
-				onClick={() => setStatus("Active")}
+				onClick={() => handleActive(spanRef)}
 				className={styles["status-modal-item"]}>
 				<TbUserCheck className={styles.icon3} />
 				<p>Activate User</p>

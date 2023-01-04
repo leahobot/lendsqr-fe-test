@@ -99,7 +99,6 @@ const Pagination = ({
 				})}
 
 				<li
-					data-testid={paginateNext}
 					className={
 						currentPage === pageNumbers[pageNumbers.length - 1]
 							? `${styles.hidden}`

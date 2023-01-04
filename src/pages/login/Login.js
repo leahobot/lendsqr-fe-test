@@ -24,6 +24,7 @@ const Login = ({ user, setUser }) => {
 			},
 			position: "top-center",
 		});
+		localStorage.setItem("email", user.email);
 	};
 
 	return (

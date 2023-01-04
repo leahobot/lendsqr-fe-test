@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "../../../pages/dashboard/Dashboard.module.scss";
 import { ViewUser, Filter } from "../..";
 import { FiMoreVertical } from "react-icons/fi";
@@ -11,21 +11,31 @@ const Table = ({
 	setFilteredUsers,
 	setShowUserDetails,
 }) => {
-	const [status, setStatus] = useState("Inactive");
 	const [userId, setUserId] = useState("");
 	const [showModal, setShowModal] = useState(false);
 	const [showFilter, setShowFilter] = useState(false);
-
-	// const [statusValue, setStatusValue] = useState("Pending");
-	// const [org, setOrg] = useState("");
-	// const [email, setEmail] = useState("");
-	// const [userName, setUserName] = useState("");
-	// const [phoneNumber, setPhoneNumber] = useState("");
-	// const [dateTime, setDateTime] = useState("");
+	const spanRef = useRef();
 
 	const handleModal = (id) => {
 		setShowModal(true);
 		setUserId(id);
+	};
+
+	const spanClassName = (id, span) => {
+		if (spanRef.current) {
+			if (span.current.innerText === "Active" && userId === id) {
+				return styles.greenBg;
+			} else if (
+				span.current.innerText === "Blacklisted" &&
+				userId === id
+			) {
+				return styles.redBg;
+			} else {
+				return styles.blueBg;
+			}
+		} else {
+			return styles.blueBg;
+		}
 	};
 
 	useEffect(() => {
@@ -51,13 +61,9 @@ const Table = ({
 			  )
 			: [];
 		setFilteredUsers(tempUsers);
-	}, [searchValue, users]);
 
-	const closeModals = () => {
-		if (showModal) {
-			setShowModal(false);
-		}
-	};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [searchValue, users]);
 
 	const editPhoneNumber = (str) => {
 		const index = str.indexOf("x");
@@ -68,7 +74,7 @@ const Table = ({
 	return (
 		<div
 			className={styles.table}
-			onClick={closeModals}>
+			onClick={() => showModal && setShowModal(false)}>
 			<table>
 				<thead>
 					<tr className={styles["table-head"]}>
@@ -76,13 +82,22 @@ const Table = ({
 							<th key={index}>
 								<p
 									onClick={() =>
-										setShowFilter((previous) => !previous)
+										setShowFilter((prev) => !prev)
 									}>
 									{item.title}
 									{item.icon}
 								</p>
 							</th>
 						))}
+						<th>
+							{showFilter && (
+								<Filter
+									users={users}
+									setFilteredUsers={setFilteredUsers}
+									setShowFilter={setShowFilter}
+								/>
+							)}
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -102,16 +117,13 @@ const Table = ({
 								</td>
 								<td>
 									<span
-										className={`${styles["user-status"]} ${
-											status === "Active" &&
-											userId === user.id
-												? styles.greenBg
-												: status === "Blacklisted" &&
-												  userId === user.id
-												? styles.redBg
-												: styles.blueBg
-										}`}>
-										{status}
+										ref={spanRef}
+										className={`${
+											styles["user-status"]
+										} ${spanClassName(user.id, spanRef)}`}>
+										{spanRef.current && user.id === userId
+											? spanRef.current.innerText
+											: "inactive"}
 									</span>
 								</td>
 								<td onClick={() => handleModal(user.id)}>
@@ -127,7 +139,7 @@ const Table = ({
 											}
 											id={user.id}
 											userId={userId}
-											setStatus={setStatus}
+											spanRef={spanRef}
 										/>
 									) : null}
 								</td>
@@ -136,8 +148,6 @@ const Table = ({
 					})}
 				</tbody>
 			</table>
-
-			{showFilter && <Filter />}
 		</div>
 	);
 };

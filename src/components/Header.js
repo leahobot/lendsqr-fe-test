@@ -8,8 +8,13 @@ import logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
 
 const Header = ({ searchValue, setSearchValue, user }) => {
-	const userName = user.email.slice(0, user.email.indexOf("@"));
-	const firstLetter = userName ? userName[0].toUpperCase() : null;
+	const userEmail = localStorage.getItem("email")
+		? localStorage.getItem("email")
+		: "userr";
+	const userName = user.email
+		? user.email.slice(0, user.email.indexOf("@"))
+		: userEmail.slice(0, userEmail.indexOf("@"));
+	const firstLetter = userName[0].toUpperCase();
 	const otherLetters = userName.slice(1).toLowerCase();
 	const name = firstLetter + otherLetters;
 

@@ -3,7 +3,6 @@ import styles from "../pages/dashboard/Dashboard.module.scss";
 import { Routes, Route } from "react-router-dom";
 import { UserDetails, Users } from "../components";
 import { routes } from "../data/data";
-
 import NotFoundHome from "../pages/notFound/NotFoundHome";
 
 const Main = ({ searchValue }) => {

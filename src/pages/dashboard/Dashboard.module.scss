@@ -79,7 +79,7 @@
 			img {
 				object-fit: cover;
 				border-radius: 50%;
-				height: 2.5rem;
+				height: 2rem;
 			}
 
 			.icon2 {
@@ -161,7 +161,7 @@
 		.main {
 			width: 72%;
 			background-color: var(--bg-color);
-			padding-bottom: 8rem;
+			padding-bottom: 5rem;
 
 			.users {
 				padding-top: 4rem;
@@ -212,7 +212,7 @@
 
 							.title {
 								height: 3.4rem;
-								font-size: 1rem;
+								font-size: 0.9rem;
 								font-weight: 500;
 							}
 
@@ -456,16 +456,16 @@
 					margin-top: 2rem;
 
 					p {
-						font-size: 1.6rem;
+						font-size: 1.5rem;
 						font-weight: 500;
 					}
 
 					button {
-						padding: 0.3rem 0.6rem;
+						padding: 0.2rem 0.3rem;
 						background-color: white;
 						border-radius: 4px;
 						font-weight: 400;
-						font-size: 0.8rem;
+						font-size: 0.5rem;
 						border: 1px solid;
 						&:active {
 							transform: translateY(2px);
@@ -538,7 +538,7 @@
 
 						.icon5 {
 							color: var(--yellow-color);
-							font-size: 1rem;
+							font-size: 1.2rem;
 						}
 
 						.amount {
@@ -564,7 +564,7 @@
 							text-decoration: none;
 							font-size: 1rem;
 							color: var(--text-color);
-							padding-bottom: 0.3rem;
+							padding-bottom: 0.5rem;
 
 							&:hover {
 								color: var(--primary-color);
